@@ -8,6 +8,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         setLocationRelativeTo(null);
+        //Simulacion s = new Simulacion();
     }
 
     @SuppressWarnings("unchecked")
@@ -498,6 +499,11 @@ public class Principal extends javax.swing.JFrame {
 
         b_startRun.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
         b_startRun.setText("Iniciar");
+        b_startRun.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_startRunMouseClicked(evt);
+            }
+        });
 
         jMenu1.setText("Crear");
 
@@ -589,7 +595,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void newStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newStudentActionPerformed
         ap.cargarArcihivo();
-        
+
         try {
             DefaultComboBoxModel m = (DefaultComboBoxModel) box_paradas.getModel();
             for (int i = 0; i < ap.getListaParadas().size(); i++) {
@@ -599,7 +605,7 @@ public class Principal extends javax.swing.JFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
+
         jd_cEstudiante.setModal(true);
         jd_cEstudiante.pack();
         jd_cEstudiante.setLocationRelativeTo(this);
@@ -626,19 +632,29 @@ public class Principal extends javax.swing.JFrame {
         String c = st_cuenta.getText();
         Parada p = (Parada) box_paradas.getSelectedItem();
         
+        ae.cargarArcihivo();
+        boolean pass = true;
+        for (int i = 0; i < ae.getListaEstudiantes().size(); i++) {
+            if (st_cuenta.getText().equals(ae.getListaEstudiantes().get(i).getCuenta())) {
+                pass = false;
+            }
+        }
+
         if (n.equals("") || c.equals("")) {
             JOptionPane.showMessageDialog(this, "Debe llenar todos los campos");
-        } else {
-            Estudiante st = new Estudiante(n,e,c,p);
+        } else if (pass == true) {
+            Estudiante st = new Estudiante(n, e, c, p);
             ae.cargarArcihivo();
             ae.setEstudiante(st);
             ae.escribirArchivo();
             JOptionPane.showMessageDialog(this, "Estudiante Registrado Exitosamente");
-            
+
             st_nombre.setText("");
             st_edad.setValue(0);
             st_cuenta.setText("");
-            box_paradas.setSelectedIndex(0);
+            box_paradas.setSelectedIndex(0);   
+        } else {
+            JOptionPane.showMessageDialog(this, "El número de cuenta ya existe");
         }
     }//GEN-LAST:event_b_crearStudentMouseClicked
 
@@ -648,15 +664,25 @@ public class Principal extends javax.swing.JFrame {
         String c = bs_color.getText();
         double v = (double) bs_velocidad.getValue();
         
+        aa.cargarArcihivo();
+        boolean pass = true;
+        for (int j = 0; j < aa.getListaAutobuses().size(); j++) {
+            if (bs_placa.getText().equals(aa.getListaAutobuses().get(j).getPlaca()) || bs_id.getText().equals(aa.getListaAutobuses().get(j).getId())) {
+                pass = false;
+            }
+        }
+        
         if (bs_id.getText().equals("") || p.equals("") || c.equals("")) {
             JOptionPane.showMessageDialog(this, "Debe llenar todos los campos");
+        } else if (pass == false) {
+            JOptionPane.showMessageDialog(this, "La placa del autobus o el ID del autobus ya está registrado");
         } else {
-            Autobus ab = new Autobus(i,p,c,v);
+            Autobus ab = new Autobus(i, p, c, v);
             aa.cargarArcihivo();
             aa.setAutobus(ab);
             aa.escribirArchivo();
             JOptionPane.showMessageDialog(this, "Autobus Registrado Exitosamente");
-            
+
             bs_id.setText("");
             bs_placa.setText("");
             bs_color.setText("");
@@ -668,20 +694,30 @@ public class Principal extends javax.swing.JFrame {
         String n = pd_nombre.getText();
         double d = (double) pd_distancia.getValue();
         double a = (double) pd_angulo.getValue();
-        double dx = d*Math.cos(a);
+        double dx = d * Math.cos(a);
         int x = (int) dx;
-        double dy = d*Math.sin(a);
+        double dy = d * Math.sin(a);
         int y = (int) dy;
+
+        ap.cargarArcihivo();
+        boolean pass = true;
+        for (int j = 0; j < ap.getListaParadas().size(); j++) {
+            if (pd_nombre.getText().equals(ap.getListaParadas().get(j).getNombre())) {
+                pass = false;
+            }
+        }
         
         if (n.equals("")) {
             JOptionPane.showMessageDialog(this, "Debe llenar todos los campos");
+        } else if (pass == false) {
+            JOptionPane.showMessageDialog(this, "La parada bajo ese nombre ya está registrada");
         } else {
-            Parada pd = new Parada(n,d,a,x,y);
+            Parada pd = new Parada(n, d, a, x, y);
             ap.cargarArcihivo();
             ap.setParad(pd);
             ap.escribirArchivo();
             JOptionPane.showMessageDialog(this, "Parada Registrada Exitosamente");
-            
+
             pd_nombre.setText("");
             pd_angulo.setValue(0);
         }
@@ -690,27 +726,27 @@ public class Principal extends javax.swing.JFrame {
     private void organizeRoutesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizeRoutesActionPerformed
         ae.cargarArcihivo();
         aa.cargarArcihivo();
-        
+
         box_buses.setEnabled(true);
         txtarea.setText("");
-        
+
         try {
             DefaultComboBoxModel m = (DefaultComboBoxModel) box_buses.getModel();
             for (int i = 0; i < aa.getListaAutobuses().size(); i++) {
                 m.addElement(aa.getListaAutobuses().get(i));
             }
             box_buses.setModel(m);
-            
+
             DefaultComboBoxModel l = (DefaultComboBoxModel) box_students.getModel();
             for (int i = 0; i < ae.getListaEstudiantes().size(); i++) {
                 l.addElement(ae.getListaEstudiantes().get(i));
             }
             box_students.setModel(l);
-            
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
+
         jd_Organizar.setModal(true);
         jd_Organizar.pack();
         jd_Organizar.setLocationRelativeTo(this);
@@ -722,20 +758,20 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_ExitActionPerformed
 
     private void b_elegirBusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_elegirBusMouseClicked
-        //ruta = (Autobus) box_buses.getSelectedItem();
+        ruta = (Autobus) box_buses.getSelectedItem();
         bpos = box_buses.getSelectedIndex();
         box_buses.setEnabled(false);
     }//GEN-LAST:event_b_elegirBusMouseClicked
 
     private void b_agregarStudentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_agregarStudentMouseClicked
         Estudiante st = (Estudiante) box_students.getSelectedItem();
-        
+
         txtarea.append(st.toString());
-        
+
         aa.cargarArcihivo();
         aa.getListaAutobuses().get(bpos).setEstudiante(st);
         aa.escribirArchivo();
-        
+
         DefaultComboBoxModel m = (DefaultComboBoxModel) box_students.getModel();
         m.removeElement(st);
         box_students.setModel(m);
@@ -744,6 +780,37 @@ public class Principal extends javax.swing.JFrame {
     private void b_routeReadyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_routeReadyMouseClicked
         jd_Organizar.setVisible(false);
     }//GEN-LAST:event_b_routeReadyMouseClicked
+
+    private void b_startRunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_startRunMouseClicked
+        cleanTable();
+        
+        
+    }//GEN-LAST:event_b_startRunMouseClicked
+
+    public void cleanTable() {
+        table.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "Parada", "Tiempo", "Estudiantes"
+                }
+        ) {
+            boolean[] canEdit = new boolean[]{
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+        table.getTableHeader().setResizingAllowed(false);
+        table.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(table);
+        if (table.getColumnModel().getColumnCount() > 0) {
+            table.getColumnModel().getColumn(0).setResizable(false);
+            table.getColumnModel().getColumn(1).setResizable(false);
+            table.getColumnModel().getColumn(2).setResizable(false);
+        }
+    }
 
     public static void main(String args[]) {
         try {
@@ -835,7 +902,8 @@ public class Principal extends javax.swing.JFrame {
     adminEstudiante ae = new adminEstudiante("./Estudiantes.gvs");
     adminAutobus aa = new adminAutobus("./Autobuses.gvs");
     adminParada ap = new adminParada("./Paradas.gvs");
-    //Autobus ruta;
+    Autobus ruta;
     int bpos;
+    Simulacion s;
 
 }
