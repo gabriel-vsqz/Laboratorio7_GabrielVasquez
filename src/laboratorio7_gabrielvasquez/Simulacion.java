@@ -5,11 +5,14 @@ import javax.swing.JProgressBar;
 public class Simulacion extends Thread {
  
     JProgressBar pb;
+    Autobus bus;
+    private int x;
     private boolean avanzar;
     private boolean vive;
 
-    public Simulacion(JProgressBar pb) {
+    public Simulacion(JProgressBar pb, Autobus bus) {
         this.pb = pb;
+        this.bus = bus;
         avanzar = true;
         vive = true;
     }
@@ -22,6 +25,14 @@ public class Simulacion extends Thread {
         this.pb = pb;
     }
 
+    public Autobus getBus() {
+        return bus;
+    }
+
+    public void setBus(Autobus bus) {
+        this.bus = bus;
+    }
+    
     public boolean isAvanzar() {
         return avanzar;
     }
@@ -41,8 +52,7 @@ public class Simulacion extends Thread {
     public void run() {
         while (vive) {
             if (avanzar) {
-//                progBar_d.setValue(Math.round( Integer.parseInt(sp_velocidad.getValue().toString()) * (progBar_t.getValue() / 60) ));
-//                progBar_d.setString( Integer.toString(progBar_d.getValue()) + "Kilómetros" );
+                
             }
             try {
                 Thread.sleep(0);

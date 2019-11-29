@@ -1,7 +1,6 @@
 package laboratorio7_gabrielvasquez;
 
 import java.awt.Color;
-import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
@@ -11,7 +10,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         setLocationRelativeTo(null);
-        //Simulacion s = new Simulacion();
+        Simulacion s = new Simulacion(bar,ruta);
     }
 
     @SuppressWarnings("unchecked")
@@ -869,8 +868,8 @@ public class Principal extends javax.swing.JFrame {
 
         txtarea.append(st.toString());
         
-        onRoutex.add(st.getParada().getCoorx());
-        onRoutey.add(st.getParada().getCoory());
+//        onRoutex.add(st.getParada().getCoorx());
+//        onRoutey.add(st.getParada().getCoory());
         
         aa.cargarArcihivo();
         aa.getListaAutobuses().get(bpos).setEstudiante(st);
@@ -1056,7 +1055,5 @@ public class Principal extends javax.swing.JFrame {
     Autobus ruta;
     int bpos;
     Simulacion s;
-    ArrayList onRoutex = new ArrayList();
-    ArrayList onRoutey = new ArrayList();
 
 }
