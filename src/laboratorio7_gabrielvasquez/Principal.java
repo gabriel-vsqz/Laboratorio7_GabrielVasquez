@@ -1,5 +1,6 @@
 package laboratorio7_gabrielvasquez;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 public class Principal extends javax.swing.JFrame {
@@ -47,6 +48,18 @@ public class Principal extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         b_crearStop = new javax.swing.JButton();
+        jd_Organizar = new javax.swing.JDialog();
+        jLabel15 = new javax.swing.JLabel();
+        box_buses = new javax.swing.JComboBox<>();
+        box_students = new javax.swing.JComboBox<>();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        b_agregarStudent = new javax.swing.JButton();
+        b_routeReady = new javax.swing.JButton();
+        b_elegirBus = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtarea = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         bar = new javax.swing.JProgressBar();
@@ -57,6 +70,10 @@ public class Principal extends javax.swing.JFrame {
         newStudent = new javax.swing.JMenuItem();
         newBus = new javax.swing.JMenuItem();
         newStop = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        organizeRoutes = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        Exit = new javax.swing.JMenuItem();
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 50)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -255,7 +272,7 @@ public class Principal extends javax.swing.JFrame {
         pd_distancia.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
 
         pd_angulo.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
-        pd_angulo.setModel(new javax.swing.SpinnerNumberModel(0, 0, 360, 1));
+        pd_angulo.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, 360.0d, 1.0d));
 
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -333,6 +350,121 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(60, Short.MAX_VALUE))
         );
 
+        jLabel15.setFont(new java.awt.Font("Dialog", 1, 50)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("Organizar Ruta");
+
+        box_buses.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+
+        box_students.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+
+        jLabel16.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("Autobus");
+
+        jLabel17.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setText("Estudiante");
+
+        b_agregarStudent.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        b_agregarStudent.setText("Agregar");
+        b_agregarStudent.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_agregarStudentMouseClicked(evt);
+            }
+        });
+
+        b_routeReady.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        b_routeReady.setText("Listo");
+        b_routeReady.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_routeReadyMouseClicked(evt);
+            }
+        });
+
+        b_elegirBus.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        b_elegirBus.setText("Elegir");
+        b_elegirBus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_elegirBusMouseClicked(evt);
+            }
+        });
+
+        jLabel22.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel22.setText("Estudiantes en Bus");
+
+        txtarea.setEditable(false);
+        txtarea.setColumns(20);
+        txtarea.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
+        txtarea.setRows(5);
+        jScrollPane3.setViewportView(txtarea);
+
+        javax.swing.GroupLayout jd_OrganizarLayout = new javax.swing.GroupLayout(jd_Organizar.getContentPane());
+        jd_Organizar.getContentPane().setLayout(jd_OrganizarLayout);
+        jd_OrganizarLayout.setHorizontalGroup(
+            jd_OrganizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_OrganizarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jd_OrganizarLayout.createSequentialGroup()
+                .addGroup(jd_OrganizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_OrganizarLayout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(b_agregarStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_OrganizarLayout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addGroup(jd_OrganizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(box_students, 0, 200, Short.MAX_VALUE)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jd_OrganizarLayout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addGroup(jd_OrganizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(box_buses, 0, 200, Short.MAX_VALUE)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jd_OrganizarLayout.createSequentialGroup()
+                        .addGap(121, 121, 121)
+                        .addComponent(b_elegirBus, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGroup(jd_OrganizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(57, 57, 57))
+            .addGroup(jd_OrganizarLayout.createSequentialGroup()
+                .addGap(233, 233, 233)
+                .addComponent(b_routeReady, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jd_OrganizarLayout.setVerticalGroup(
+            jd_OrganizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_OrganizarLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jLabel15)
+                .addGap(36, 36, 36)
+                .addGroup(jd_OrganizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jd_OrganizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_OrganizarLayout.createSequentialGroup()
+                        .addGap(18, 19, Short.MAX_VALUE)
+                        .addComponent(box_buses, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(b_elegirBus, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(box_students, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(b_agregarStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_OrganizarLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3)))
+                .addGap(34, 34, 34)
+                .addComponent(b_routeReady, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         table.setModel(new javax.swing.table.DefaultTableModel(
@@ -351,6 +483,8 @@ public class Principal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        table.getTableHeader().setResizingAllowed(false);
+        table.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(table);
         if (table.getColumnModel().getColumnCount() > 0) {
             table.getColumnModel().getColumn(0).setResizable(false);
@@ -393,6 +527,30 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setText("Organizar");
+
+        organizeRoutes.setText("Asignar Buses");
+        organizeRoutes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                organizeRoutesActionPerformed(evt);
+            }
+        });
+        jMenu2.add(organizeRoutes);
+
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Sistema");
+
+        Exit.setText("Salir");
+        Exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitActionPerformed(evt);
+            }
+        });
+        jMenu3.add(Exit);
+
+        jMenuBar1.add(jMenu3);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -430,6 +588,18 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void newStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newStudentActionPerformed
+        ap.cargarArcihivo();
+        
+        try {
+            DefaultComboBoxModel m = (DefaultComboBoxModel) box_paradas.getModel();
+            for (int i = 0; i < ap.getListaParadas().size(); i++) {
+                m.addElement(ap.getListaParadas().get(i));
+            }
+            box_paradas.setModel(m);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
         jd_cEstudiante.setModal(true);
         jd_cEstudiante.pack();
         jd_cEstudiante.setLocationRelativeTo(this);
@@ -517,6 +687,64 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_b_crearStopMouseClicked
 
+    private void organizeRoutesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizeRoutesActionPerformed
+        ae.cargarArcihivo();
+        aa.cargarArcihivo();
+        
+        box_buses.setEnabled(true);
+        txtarea.setText("");
+        
+        try {
+            DefaultComboBoxModel m = (DefaultComboBoxModel) box_buses.getModel();
+            for (int i = 0; i < aa.getListaAutobuses().size(); i++) {
+                m.addElement(aa.getListaAutobuses().get(i));
+            }
+            box_buses.setModel(m);
+            
+            DefaultComboBoxModel l = (DefaultComboBoxModel) box_students.getModel();
+            for (int i = 0; i < ae.getListaEstudiantes().size(); i++) {
+                l.addElement(ae.getListaEstudiantes().get(i));
+            }
+            box_students.setModel(l);
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
+        jd_Organizar.setModal(true);
+        jd_Organizar.pack();
+        jd_Organizar.setLocationRelativeTo(this);
+        jd_Organizar.setVisible(true);
+    }//GEN-LAST:event_organizeRoutesActionPerformed
+
+    private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_ExitActionPerformed
+
+    private void b_elegirBusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_elegirBusMouseClicked
+        //ruta = (Autobus) box_buses.getSelectedItem();
+        bpos = box_buses.getSelectedIndex();
+        box_buses.setEnabled(false);
+    }//GEN-LAST:event_b_elegirBusMouseClicked
+
+    private void b_agregarStudentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_agregarStudentMouseClicked
+        Estudiante st = (Estudiante) box_students.getSelectedItem();
+        
+        txtarea.append(st.toString());
+        
+        aa.cargarArcihivo();
+        aa.getListaAutobuses().get(bpos).setEstudiante(st);
+        aa.escribirArchivo();
+        
+        DefaultComboBoxModel m = (DefaultComboBoxModel) box_students.getModel();
+        m.removeElement(st);
+        box_students.setModel(m);
+    }//GEN-LAST:event_b_agregarStudentMouseClicked
+
+    private void b_routeReadyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_routeReadyMouseClicked
+        jd_Organizar.setVisible(false);
+    }//GEN-LAST:event_b_routeReadyMouseClicked
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -543,12 +771,18 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Exit;
+    private javax.swing.JButton b_agregarStudent;
     private javax.swing.JButton b_crearBus;
     private javax.swing.JButton b_crearStop;
     private javax.swing.JButton b_crearStudent;
+    private javax.swing.JButton b_elegirBus;
+    private javax.swing.JButton b_routeReady;
     private javax.swing.JButton b_startRun;
     private javax.swing.JProgressBar bar;
+    private javax.swing.JComboBox<String> box_buses;
     private javax.swing.JComboBox<String> box_paradas;
+    private javax.swing.JComboBox<String> box_students;
     private javax.swing.JTextField bs_color;
     private javax.swing.JTextField bs_id;
     private javax.swing.JTextField bs_placa;
@@ -559,11 +793,15 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -572,14 +810,19 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JDialog jd_Organizar;
     private javax.swing.JDialog jd_cAutobus;
     private javax.swing.JDialog jd_cEstudiante;
     private javax.swing.JDialog jd_cParada;
     private javax.swing.JMenuItem newBus;
     private javax.swing.JMenuItem newStop;
     private javax.swing.JMenuItem newStudent;
+    private javax.swing.JMenuItem organizeRoutes;
     private javax.swing.JSpinner pd_angulo;
     private javax.swing.JSpinner pd_distancia;
     private javax.swing.JTextField pd_nombre;
@@ -587,9 +830,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JSpinner st_edad;
     private javax.swing.JTextField st_nombre;
     private javax.swing.JTable table;
+    private javax.swing.JTextArea txtarea;
     // End of variables declaration//GEN-END:variables
     adminEstudiante ae = new adminEstudiante("./Estudiantes.gvs");
     adminAutobus aa = new adminAutobus("./Autobuses.gvs");
     adminParada ap = new adminParada("./Paradas.gvs");
+    //Autobus ruta;
+    int bpos;
 
 }
