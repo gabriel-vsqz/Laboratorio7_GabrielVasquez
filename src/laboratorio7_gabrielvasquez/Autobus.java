@@ -1,5 +1,6 @@
 package laboratorio7_gabrielvasquez;
 
+import java.awt.Color;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -7,11 +8,11 @@ public class Autobus implements Serializable {
  
     private int id;
     private String placa;
-    private String color;
+    private Color color;
     private double velocidad;
     private ArrayList<Estudiante> estudiantes = new ArrayList();
 
-    public Autobus(int id, String placa, String color, double velocidad) {
+    public Autobus(int id, String placa, Color color, double velocidad) {
         this.id = id;
         this.placa = placa;
         this.color = color;
@@ -34,11 +35,11 @@ public class Autobus implements Serializable {
         this.placa = placa;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 

@@ -1,6 +1,9 @@
 package laboratorio7_gabrielvasquez;
 
+import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
 
 public class Principal extends javax.swing.JFrame {
@@ -34,10 +37,10 @@ public class Principal extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         bs_id = new javax.swing.JTextField();
         bs_placa = new javax.swing.JTextField();
-        bs_color = new javax.swing.JTextField();
         bs_velocidad = new javax.swing.JSpinner();
         jLabel11 = new javax.swing.JLabel();
         b_crearBus = new javax.swing.JButton();
+        bs_color = new javax.swing.JButton();
         jd_cParada = new javax.swing.JDialog();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -61,6 +64,16 @@ public class Principal extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtarea = new javax.swing.JTextArea();
+        jd_showInfo = new javax.swing.JDialog();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtBuses = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        txtParadas = new javax.swing.JTextArea();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        txtEstudiantes = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         bar = new javax.swing.JProgressBar();
@@ -73,6 +86,7 @@ public class Principal extends javax.swing.JFrame {
         newStop = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         organizeRoutes = new javax.swing.JMenuItem();
+        showInfo = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         Exit = new javax.swing.JMenuItem();
 
@@ -182,8 +196,6 @@ public class Principal extends javax.swing.JFrame {
 
         bs_placa.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
 
-        bs_color.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
-
         bs_velocidad.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
         bs_velocidad.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
 
@@ -196,6 +208,12 @@ public class Principal extends javax.swing.JFrame {
         b_crearBus.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 b_crearBusMouseClicked(evt);
+            }
+        });
+
+        bs_color.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bs_colorMouseClicked(evt);
             }
         });
 
@@ -217,12 +235,12 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(jd_cAutobusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(bs_id, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .addComponent(bs_color, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .addGroup(jd_cAutobusLayout.createSequentialGroup()
                         .addComponent(bs_velocidad, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(bs_placa, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                    .addComponent(bs_placa, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(bs_color, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(68, 68, 68))
             .addGroup(jd_cAutobusLayout.createSequentialGroup()
                 .addGap(233, 233, 233)
@@ -246,12 +264,12 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jd_cAutobusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bs_color, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
+                .addGap(43, 43, 43)
                 .addGroup(jd_cAutobusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bs_velocidad, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(b_crearBus, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48))
         );
@@ -466,6 +484,81 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(18, 18, 18))
         );
 
+        jLabel23.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel23.setText("Buses");
+
+        jLabel24.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel24.setText("Estudiantes");
+
+        jLabel25.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
+        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel25.setText("Paradas");
+
+        txtBuses.setEditable(false);
+        txtBuses.setColumns(20);
+        txtBuses.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
+        txtBuses.setRows(5);
+        jScrollPane2.setViewportView(txtBuses);
+
+        txtParadas.setEditable(false);
+        txtParadas.setColumns(20);
+        txtParadas.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
+        txtParadas.setRows(5);
+        jScrollPane4.setViewportView(txtParadas);
+
+        txtEstudiantes.setEditable(false);
+        txtEstudiantes.setColumns(20);
+        txtEstudiantes.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
+        txtEstudiantes.setRows(5);
+        jScrollPane5.setViewportView(txtEstudiantes);
+
+        javax.swing.GroupLayout jd_showInfoLayout = new javax.swing.GroupLayout(jd_showInfo.getContentPane());
+        jd_showInfo.getContentPane().setLayout(jd_showInfoLayout);
+        jd_showInfoLayout.setHorizontalGroup(
+            jd_showInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_showInfoLayout.createSequentialGroup()
+                .addGroup(jd_showInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_showInfoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jd_showInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jd_showInfoLayout.createSequentialGroup()
+                        .addGroup(jd_showInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jd_showInfoLayout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jd_showInfoLayout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 26, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_showInfoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
+        );
+        jd_showInfoLayout.setVerticalGroup(
+            jd_showInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_showInfoLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel23)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(jLabel25)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(jLabel24)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         table.setModel(new javax.swing.table.DefaultTableModel(
@@ -542,6 +635,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jMenu2.add(organizeRoutes);
+
+        showInfo.setText("Visualizar Binarios");
+        showInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showInfoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(showInfo);
 
         jMenuBar1.add(jMenu2);
 
@@ -661,7 +762,7 @@ public class Principal extends javax.swing.JFrame {
     private void b_crearBusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_crearBusMouseClicked
         int i = Integer.parseInt(bs_id.getText());
         String p = bs_placa.getText();
-        String c = bs_color.getText();
+        Color c = bs_color.getBackground();
         double v = (double) bs_velocidad.getValue();
         
         aa.cargarArcihivo();
@@ -767,7 +868,10 @@ public class Principal extends javax.swing.JFrame {
         Estudiante st = (Estudiante) box_students.getSelectedItem();
 
         txtarea.append(st.toString());
-
+        
+        onRoutex.add(st.getParada().getCoorx());
+        onRoutey.add(st.getParada().getCoory());
+        
         aa.cargarArcihivo();
         aa.getListaAutobuses().get(bpos).setEstudiante(st);
         aa.escribirArchivo();
@@ -786,6 +890,42 @@ public class Principal extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_b_startRunMouseClicked
+
+    private void bs_colorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bs_colorMouseClicked
+        bs_color.setBackground(JColorChooser.showDialog(this, "Elija el color del bus", Color.white));
+    }//GEN-LAST:event_bs_colorMouseClicked
+
+    private void showInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showInfoActionPerformed
+        ae.cargarArcihivo();
+        aa.cargarArcihivo();
+        ap.cargarArcihivo();
+        
+        for (int i = 0; i < ae.getListaEstudiantes().size(); i++) {
+            txtEstudiantes.append("Nombre: " + ae.getListaEstudiantes().get(i).getNombre() +
+                    " - Cuenta: " + ae.getListaEstudiantes().get(i).getCuenta() +
+                    " - Edad: " + ae.getListaEstudiantes().get(i).getEdad() +
+                    " - Parada: " + ae.getListaEstudiantes().get(i).getParada() + "\n");
+        }
+        for (int i = 0; i < aa.getListaAutobuses().size(); i++) {
+            txtBuses.append("No. de ID: " + aa.getListaAutobuses().get(i).getId()+
+                    " - Placa: " + aa.getListaAutobuses().get(i).getPlaca() +
+                    " - Color: " + aa.getListaAutobuses().get(i).getColor() +
+                    " - Velocidad: " + aa.getListaAutobuses().get(i).getVelocidad() +
+                    " - Estudiantes: " + aa.getListaAutobuses().get(i).getEstudiantes() + "\n");
+        }
+        for (int i = 0; i < ap.getListaParadas().size(); i++) {
+            txtParadas.append("Nombre: " + ap.getListaParadas().get(i).getNombre() +
+                    " - Distancia: " + ap.getListaParadas().get(i).getDistancia() +
+                    " - Ángulo: " + ap.getListaParadas().get(i).getAngulo() +
+                    " - Coordenadas: (" + ap.getListaParadas().get(i).getCoorx() + "," + ap.getListaParadas().get(i).getCoory() + ")\n");
+        }
+        
+        jd_showInfo.setModal(true);
+        jd_showInfo.pack();
+        jd_showInfo.setLocationRelativeTo(this);
+        jd_showInfo.setVisible(true);
+                
+    }//GEN-LAST:event_showInfoActionPerformed
 
     public void cleanTable() {
         table.setModel(new javax.swing.table.DefaultTableModel(
@@ -850,7 +990,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> box_buses;
     private javax.swing.JComboBox<String> box_paradas;
     private javax.swing.JComboBox<String> box_students;
-    private javax.swing.JTextField bs_color;
+    private javax.swing.JButton bs_color;
     private javax.swing.JTextField bs_id;
     private javax.swing.JTextField bs_placa;
     private javax.swing.JSpinner bs_velocidad;
@@ -869,6 +1009,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -881,11 +1024,15 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JDialog jd_Organizar;
     private javax.swing.JDialog jd_cAutobus;
     private javax.swing.JDialog jd_cEstudiante;
     private javax.swing.JDialog jd_cParada;
+    private javax.swing.JDialog jd_showInfo;
     private javax.swing.JMenuItem newBus;
     private javax.swing.JMenuItem newStop;
     private javax.swing.JMenuItem newStudent;
@@ -893,10 +1040,14 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JSpinner pd_angulo;
     private javax.swing.JSpinner pd_distancia;
     private javax.swing.JTextField pd_nombre;
+    private javax.swing.JMenuItem showInfo;
     private javax.swing.JTextField st_cuenta;
     private javax.swing.JSpinner st_edad;
     private javax.swing.JTextField st_nombre;
     private javax.swing.JTable table;
+    private javax.swing.JTextArea txtBuses;
+    private javax.swing.JTextArea txtEstudiantes;
+    private javax.swing.JTextArea txtParadas;
     private javax.swing.JTextArea txtarea;
     // End of variables declaration//GEN-END:variables
     adminEstudiante ae = new adminEstudiante("./Estudiantes.gvs");
@@ -905,5 +1056,7 @@ public class Principal extends javax.swing.JFrame {
     Autobus ruta;
     int bpos;
     Simulacion s;
+    ArrayList onRoutex = new ArrayList();
+    ArrayList onRoutey = new ArrayList();
 
 }
