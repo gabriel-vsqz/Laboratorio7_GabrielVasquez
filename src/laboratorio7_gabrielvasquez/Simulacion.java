@@ -68,7 +68,8 @@ public class Simulacion extends Thread {
                     double t = d/bus.getVelocidad();
                     int time = (int) t;
                     pb.setMaximum(time);
-                    pb.setValue(pb.getValue() + 1);
+                    pb.setValue(pb.getValue());
+                    //pb.setValue(0);
                 }
             }
             try {
