@@ -2,6 +2,7 @@ package laboratorio7_gabrielvasquez;
 
 import javax.swing.JProgressBar;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class Simulacion extends Thread {
 
@@ -63,19 +64,27 @@ public class Simulacion extends Thread {
     public void run() {
         while (vive) {
             if (avanzar) {
-                for (int i = 0; i < bus.getEstudiantes().size(); i++) {
+                int i = 0;
                     double d = distanceFormula(bus.getEstudiantes().get(i).getParada());
                     double t = d/bus.getVelocidad();
                     int time = (int) t;
                     pb.setMaximum(time);
                     pb.setValue(pb.getValue());
-                    //pb.setValue(0);
-                }
             }
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException ex) {
             }
+            pb.setValue(0);
+            
+//            Object[] row = {
+//                bus.getEstudiantes().get(i).getParada(),
+//                time,
+//                bus.getEstudiantes().get(i).getNombre()
+//            };
+//            DefaultTableModel model = (DefaultTableModel) tbl.getModel();
+//            model.addRow(row);
+//            tbl.setModel(model);
         }
     }
 
