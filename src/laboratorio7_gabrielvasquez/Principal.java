@@ -10,7 +10,6 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         setLocationRelativeTo(null);
-        Simulacion s = new Simulacion(bar,ruta);
     }
 
     @SuppressWarnings("unchecked")
@@ -866,10 +865,7 @@ public class Principal extends javax.swing.JFrame {
     private void b_agregarStudentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_agregarStudentMouseClicked
         Estudiante st = (Estudiante) box_students.getSelectedItem();
 
-        txtarea.append(st.toString());
-        
-//        onRoutex.add(st.getParada().getCoorx());
-//        onRoutey.add(st.getParada().getCoory());
+        txtarea.append(st.toString()+"\n");
         
         aa.cargarArcihivo();
         aa.getListaAutobuses().get(bpos).setEstudiante(st);
@@ -886,8 +882,8 @@ public class Principal extends javax.swing.JFrame {
 
     private void b_startRunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_startRunMouseClicked
         cleanTable();
-        
-        
+        s = new Simulacion(bar,ruta,table);
+        s.start();
     }//GEN-LAST:event_b_startRunMouseClicked
 
     private void bs_colorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bs_colorMouseClicked
