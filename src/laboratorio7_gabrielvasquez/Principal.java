@@ -878,6 +878,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void b_routeReadyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_routeReadyMouseClicked
         jd_Organizar.setVisible(false);
+        ruta = (Autobus) box_buses.getSelectedItem();
     }//GEN-LAST:event_b_routeReadyMouseClicked
 
     private void b_startRunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_startRunMouseClicked
@@ -895,25 +896,29 @@ public class Principal extends javax.swing.JFrame {
         aa.cargarArcihivo();
         ap.cargarArcihivo();
         
-        for (int i = 0; i < ae.getListaEstudiantes().size(); i++) {
-            txtEstudiantes.append("Nombre: " + ae.getListaEstudiantes().get(i).getNombre() +
-                    " - Cuenta: " + ae.getListaEstudiantes().get(i).getCuenta() +
-                    " - Edad: " + ae.getListaEstudiantes().get(i).getEdad() +
-                    " - Parada: " + ae.getListaEstudiantes().get(i).getParada() + "\n");
-        }
-        for (int i = 0; i < aa.getListaAutobuses().size(); i++) {
-            txtBuses.append("No. de ID: " + aa.getListaAutobuses().get(i).getId()+
-                    " - Placa: " + aa.getListaAutobuses().get(i).getPlaca() +
-                    " - Color: " + aa.getListaAutobuses().get(i).getColor() +
-                    " - Velocidad: " + aa.getListaAutobuses().get(i).getVelocidad() +
-                    " - Estudiantes: " + aa.getListaAutobuses().get(i).getEstudiantes() + "\n");
-        }
-        for (int i = 0; i < ap.getListaParadas().size(); i++) {
-            txtParadas.append("Nombre: " + ap.getListaParadas().get(i).getNombre() +
-                    " - Distancia: " + ap.getListaParadas().get(i).getDistancia() +
-                    " - Ángulo: " + ap.getListaParadas().get(i).getAngulo() +
-                    " - Coordenadas: (" + ap.getListaParadas().get(i).getCoorx() + "," + ap.getListaParadas().get(i).getCoory() + ")\n");
-        }
+        txtBuses.setText("");
+        txtEstudiantes.setText("");
+        txtParadas.setText("");
+        
+            for (int i = 0; i < ae.getListaEstudiantes().size(); i++) {
+                txtEstudiantes.append("Nombre: " + ae.getListaEstudiantes().get(i).getNombre() +
+                        " - Cuenta: " + ae.getListaEstudiantes().get(i).getCuenta() +
+                        " - Edad: " + ae.getListaEstudiantes().get(i).getEdad() +
+                        " - Parada: " + ae.getListaEstudiantes().get(i).getParada() + "\n");
+            }
+            for (int i = 0; i < aa.getListaAutobuses().size(); i++) {
+                txtBuses.append("No. de ID: " + aa.getListaAutobuses().get(i).getId()+
+                        " - Placa: " + aa.getListaAutobuses().get(i).getPlaca() +
+                        " - Color: " + aa.getListaAutobuses().get(i).getColor() +
+                        " - Velocidad: " + aa.getListaAutobuses().get(i).getVelocidad() +
+                        " - Estudiantes: " + aa.getListaAutobuses().get(i).getEstudiantes() + "\n");
+            }
+            for (int i = 0; i < ap.getListaParadas().size(); i++) {
+                txtParadas.append("Nombre: " + ap.getListaParadas().get(i).getNombre() +
+                        " - Distancia: " + ap.getListaParadas().get(i).getDistancia() +
+                        " - Ángulo: " + ap.getListaParadas().get(i).getAngulo() +
+                        " - Coordenadas: (" + ap.getListaParadas().get(i).getCoorx() + "," + ap.getListaParadas().get(i).getCoory() + ")\n");
+            }
         
         jd_showInfo.setModal(true);
         jd_showInfo.pack();
